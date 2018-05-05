@@ -9,8 +9,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.concurrent.Callable;
+
 @RestController
-@RequestMapping("/node/relationship")
+@RequestMapping(path = "/node/relationship")
 public class NodeRelationshipController {
 
     private final NodeRelationshipService nodeRelationshipService;
@@ -20,9 +22,11 @@ public class NodeRelationshipController {
     }
 
     @RequestMapping(path = "/file", method = RequestMethod.POST)
-    public ResponseEntity<Void> upload(@RequestBody MultipartFile multipartFile) {
-        nodeRelationshipService.createFromFile(multipartFile);
+    public Callable<ResponseEntity<Void>> upload(@RequestBody MultipartFile multipartFile) {
+        return () -> {
+            nodeRelationshipService.createFromFile(multipartFile);
 
-        return new ResponseEntity<>(HttpStatus.OK);
+            return new ResponseEntity<>(HttpStatus.OK);
+        };
     }
 }

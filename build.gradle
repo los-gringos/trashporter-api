@@ -1,6 +1,6 @@
 buildscript {
     ext {
-        springBootVersion = '2.0.0.RELEASE'
+        springBootVersion = '2.0.1.RELEASE'
     }
 
     repositories {
@@ -15,13 +15,13 @@ buildscript {
 apply plugin: 'java'
 apply plugin: 'org.springframework.boot'
 
-ext {
-    springDataVersion = '2.0.0.RELEASE'
-    lombokVersion = '1.16.20'
-}
-
 group 'io.los.gringos'
 version '0.0.1-SNAPSHOT'
+
+ext {
+    springDataVersion = '2.0.1.RELEASE'
+    lombokVersion = '1.16.20'
+}
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
